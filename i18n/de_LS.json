@@ -1,0 +1,22 @@
+{
+  "code": "de_LS",
+  "description": "German - leichte Sprache",
+  "translations": {
+    "obstructive": "schränkt mich ein",
+    "supportive": "hilft mir",
+    "complicated": "ist kompliziert",
+    "easy": "ist einfach",
+    "inefficient": "tut nicht was es soll",
+    "efficient": "tut was es soll",
+    "confusing": "verwirrt mich",
+    "clear": "ist für mich klar",
+    "boring": "ist langweilig",
+    "exciting": "ist spannend",
+    "not interesting": "ist uninteressant",
+    "interesting": "ist interessant",
+    "conventional": "ist gewöhnlich",
+    "inventive": "ist ungewöhnlich",
+    "usual": "habe ich schon oft so gesehen",
+    "leading edge": "habe ich noch nie so gesehen"
+  }
+}
