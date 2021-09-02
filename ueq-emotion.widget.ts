@@ -1,9 +1,9 @@
 import {UeqContents, UeqEmotionOptions, UeqEmotionType} from './ueq-emotion.contents';
 import value from '*.json';
 
-const FACE_WIDTH = 70;
 
 const createFace = (i: number, row: {name: string}) => {
+  const FACE_WIDTH = 70;
   const mouthW = FACE_WIDTH / 2;
   const mouthL = FACE_WIDTH / 4;
   const percent = (i - 1) / 6;

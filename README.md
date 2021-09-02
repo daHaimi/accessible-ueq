@@ -48,5 +48,54 @@ and Typescript:
   };
 ```
 
+## Usage as a web component
+You can use the accessible UEQ-S in any web application as a [WebComponent](https://www.webcomponents.org/).
+All you need to do is import the javascript file and use the custom HTML element:
+
+1. Install via npm: `npm i surveyjs-accessible-ueqs`
+2. Import and use in yout html:
+```html
+...
+<head>
+    <script src="./node_modules/surveyjs-accessible-ueqs/dist/ueq-emotion.webcomponent.js"></script>
+</head>
+...
+<body>
+...
+    <ueq-emotion name="form-element-name"></ueq-emotion>
+...
+</body>
+```
+
+### Styling
+The accessible UEQ-S is designed to be accessible as far as possible, even from color schemes.
+However, for some applications, it may be necessary to change sizes or colors.
+This can be done by setting the elements' css variables. This is even possible per element:
+```html
+<style>
+    /* setting global style */
+    ueq-emotion {
+        /* Size of an individual smiley face. All sizes will be calculated based on this. */
+        --ueq-face-size: 2em; /* default: 4em */
+        
+        /* Border color of the smiley face. */
+        --ueq-border-normal: maroon; /* default: #000000 */
+        
+        /* Border color of the selected smiley face. */
+        --ueq-border-normal: green; /* default: #0000ff */
+    }
+    .giant-faces {
+        --ueq-face-size: 100px;
+    }
+</style>
+
+<!-- Using global styles -->
+<ueq-emotion></ueq-emotion>
+
+<!-- Using "giant-faces" class style -->
+<ueq-emotion class="giant-faces"></ueq-emotion>
+
+```
+
 # License
 This has been released under [MIT license](LICENSE).

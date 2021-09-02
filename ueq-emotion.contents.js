@@ -1,12 +1,7 @@
-export enum UeqEmotionType {
-  Short = 'Short',
-  Full = 'Full'
-}
-
-export class UeqEmotionOptions {
-  type: UeqEmotionType;
-  language: string;
-}
+export const UeqEmotionType ={
+  Short: 'Short',
+  Full: 'Full'
+};
 
 export const UeqContents = {
   [UeqEmotionType.Short]: [

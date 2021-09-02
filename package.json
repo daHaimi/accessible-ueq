@@ -1,0 +1,45 @@
+{
+  "name": "surveyjs-accessible-ueqs",
+  "version": "1.0.0",
+  "description": "An accessible version of the UEQ(-S) questionnaire for web usage",
+  "private": true,
+  "type": "module",
+  "main": "ueq-emotion.webcomponent.js",
+  "module": "ueq-emotion.webcomponent.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daHaimi/surveyjs-accessible-ueqs.git"
+  },
+  "keywords": [
+    "ueq",
+    "ueq-s",
+    "accessibility",
+    "ux"
+  ],
+  "author": "Mathias Haimerl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/daHaimi/surveyjs-accessible-ueqs/issues"
+  },
+  "homepage": "https://github.com/daHaimi/surveyjs-accessible-ueqs#readme",
+  "dependencies": {
+    "@webcomponents/webcomponentsjs": "^2.6.0",
+    "lit": "^2.0.0-rc.3",
+    "lit-element": "^2.5.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-decorators": "^7.14.5",
+    "@babel/preset-env": "^7.15.0",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "core-js": "^3.17.1",
+    "regenerator-runtime": "^0.13.9"
+  }
+}
