@@ -1,6 +1,6 @@
 {
-  "name": "surveyjs-accessible-ueqs",
-  "version": "1.0.0",
+  "name": "accessible-ueq",
+  "version": "0.2.1",
   "description": "An accessible version of the UEQ(-S) questionnaire for web usage",
   "private": true,
   "type": "module",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/daHaimi/surveyjs-accessible-ueqs.git"
+    "url": "git+https://github.com/daHaimi/accessible-ueq"
   },
   "keywords": [
     "ueq",
@@ -23,9 +23,12 @@
   "author": "Mathias Haimerl",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/daHaimi/surveyjs-accessible-ueqs/issues"
+    "url": "https://github.com/daHaimi/accessible-ueq/issues"
   },
-  "homepage": "https://github.com/daHaimi/surveyjs-accessible-ueqs#readme",
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/daHaimi/accessible-ueq#readme",
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.6.0",
     "lit": "^2.0.0-rc.3",

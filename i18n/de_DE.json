@@ -17,6 +17,7 @@
     "conventional": "konventionell",
     "inventive": "originell",
     "usual": "herkömmlich",
-    "leading edge": "neuartig"
+    "leading edge": "neuartig",
+    "error fields missing": "Alle Felder müssen gefüllt werden."
   }
 }

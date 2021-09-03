@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <title>Example of accessible UEQ-S</title>
   <script type="module" src="dist/ueq-emotion.webcomponent.mjs"></script>
+    <style></style>
 </head>
 <body>
-  <ueq-emotion name="sampleUeq"></ueq-emotion>
+  <!-- Simple usage -->
+  <ueq-emotion name="ueq-1" locale="de_LS"></ueq-emotion>
+  <!-- Extended usage -->
+  <ueq-emotion name="ueq-2" locale="de_LS" value='{
+            "clarity": 4,
+            "support": 6
+        }' multi-field required></ueq-emotion>
+
 </body>
 </html>

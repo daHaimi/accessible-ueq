@@ -17,6 +17,7 @@
     "conventional": "conventional",
     "inventive": "inventive",
     "usual": "usual",
-    "leading edge": "leading edge"
+    "leading edge": "leading edge",
+    "error fields missing": "All fields must be filled out."
   }
 }

@@ -13,7 +13,7 @@ const config = {
         nodeResolve(),
         json(),
         babel({
-            babelHelpers: "bundled",
+            babelHelpers: "inline",
         })
     ]
 };
