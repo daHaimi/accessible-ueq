@@ -42,7 +42,7 @@ with numbers from `1 - 7` depending on the selection.
 ```
 <custom-element-demo>
   <template>
-    <script type="module" href="../dist/ueq-emotion.webcomponent.mjs">
+    <script type="module" href="../dist/ueq-emotion.webcomponent.mjs"></script>
     <next-code-block></next-code-block>
   </template>
 </custom-element-demo>
