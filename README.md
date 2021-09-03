@@ -1,5 +1,5 @@
 # Accessible UEQ(S) WebComponent
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/daHaimi/accessible-ueq)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/accessible-ueq)
 A more accessible version of the [UEQ-S](https://www.ueq-online.org) through usage with emotional bonding ([Publication](https://doi.org/10.1145/3473856.3473990)).
 This widget uses smileys as an approach to link emotions to the UEQ tiers.
 The development focused on the UEQ-S, so the full UEQ is not yet implemented.
