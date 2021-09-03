@@ -13,7 +13,7 @@ All you need to do is import the javascript file and use the custom HTML element
 ```html
 ...
 <head>
-    <script src="./node_modules/**accessible-ueq**/dist/ueq-emotion.webcomponent.js"></script>
+    <script type="module" src="./node_modules/accessible-ueq/dist/ueq-emotion.webcomponent.mjs"></script>
 </head>
 ...
 <body>
@@ -23,7 +23,7 @@ All you need to do is import the javascript file and use the custom HTML element
 </body>
 ```
 3. The provided values will be submitted as JSON-encoded string in the form
-```json
+```
 {
   my-ueq[support] = <number>,
   my-ueq[ease] = <number>,
