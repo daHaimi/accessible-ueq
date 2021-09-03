@@ -13,7 +13,7 @@ All you need to do is import the javascript file and use the custom HTML element
 ```html
 ...
 <head>
-    <script src="./node_modules/surveyjs-accessible-ueqs/dist/ueq-emotion.webcomponent.js"></script>
+    <script src="./node_modules/**accessible-ueq**/dist/ueq-emotion.webcomponent.js"></script>
 </head>
 ...
 <body>
@@ -122,8 +122,8 @@ To add the accessible UEQ-S to you survey, just add this project to your `compon
 ```typescript
 ...
 import * as Survey from 'survey-angular';
-import {init as initUeqWidget} from './surveyjs-accessible-ueqs/ueq-emotion.widget';
-import {UeqEmotionType} from './surveyjs-accessible-ueqs/ueq-emotion.contents';
+import {init as initUeqWidget} from './accessible-ueq/ueq-emotion.widget';
+import {UeqEmotionType} from './accessible-ueq/ueq-emotion.contents';
 ...
 initUeqWidget(Survey, {
   type: UeqEmotionType.Short,
