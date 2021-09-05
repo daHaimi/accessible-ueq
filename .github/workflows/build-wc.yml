@@ -7,11 +7,12 @@ jobs:
       - run: echo "Build WebComponent using rollup..."
       - name: Installing rollup
         run: |
-          npm install -D rollup
+          npm install -g rollup
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: List files in the repository
         run: |
+          npm ci
           npm run build
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
