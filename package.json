@@ -1,6 +1,6 @@
 {
   "name": "accessible-ueq",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "An accessible version of the UEQ(-S) questionnaire for web usage",
   "type": "module",
   "main": "ueq-emotion.webcomponent.js",
@@ -25,7 +25,8 @@
     "url": "https://github.com/daHaimi/accessible-ueq/issues"
   },
   "files": [
-    "dist"
+    "dist",
+    "example.html"
   ],
   "homepage": "https://github.com/daHaimi/accessible-ueq#readme",
   "dependencies": {
