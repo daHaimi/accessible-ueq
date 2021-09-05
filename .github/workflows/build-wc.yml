@@ -1,0 +1,22 @@
+name: GitHub Actions Demo
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Build WebComponent using rollup..."
+      - name: Installing rollup
+        run: |
+          npm install -D rollup
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: List files in the repository
+        run: |
+          npm run build
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: |
+            dist
+      - run: echo "🍏 This job's status is ${{ job.status }}."

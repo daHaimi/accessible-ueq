@@ -1,6 +1,11 @@
 # Accessible UEQ(S) WebComponent
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/accessible-ueq)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FdaHaimi%2Faccessible-ueq.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FdaHaimi%2Faccessible-ueq?ref=badge_shield)
+
+<p align="center">
+    <a href="https://app.fossa.com/projects/git%2Bgithub.com%2FdaHaimi%2Faccessible-ueq?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FdaHaimi%2Faccessible-ueq.svg?type=shield"/></a>  <a href="https://www.npmjs.com/package/accessible-ueq"><img src="https://img.shields.io/npm/v/accessible-ueq.svg" alt="NPM Version"></a>
+    <a href="https://www.webcomponents.org/element/accessible-ueq"><img src="https://img.shields.io/badge/webcomponents.org-published-blue.svg" alt="Published on webcomponents.org" /></a>
+</p>
+
+
 A more accessible version of the [UEQ-S](https://www.ueq-online.org) through usage with emotional bonding ([Publication](https://doi.org/10.1145/3473856.3473990)).
 This widget uses smileys as an approach to link emotions to the UEQ tiers.
 The development focused on the UEQ-S, so the full UEQ is not yet implemented.
@@ -163,6 +168,5 @@ and Typescript:
 
 # License
 This has been released under [MIT license](LICENSE).
-
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FdaHaimi%2Faccessible-ueq.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FdaHaimi%2Faccessible-ueq?ref=badge_large)
