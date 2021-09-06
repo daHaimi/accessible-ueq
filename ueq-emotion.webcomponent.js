@@ -1,8 +1,8 @@
-import "regenerator-runtime/runtime";
+import 'regenerator-runtime/runtime';
 import {css, html, LitElement} from 'lit-element';
 import {customElement, property} from 'lit/decorators.js';
-import {UeqContents, UeqEmotionType} from "./ueq-emotion.contents";
-import i18n from "./i18n/i18n";
+import {UeqContents, UeqEmotionType} from './ueq-emotion.contents';
+import i18n from './i18n/i18n';
 
 @customElement('ueq-emotion')
 export class UeqEmotion extends LitElement {
@@ -10,12 +10,11 @@ export class UeqEmotion extends LitElement {
     static formAssociated = true;
 
     @property({type: String}) name;
-    @property({type: Object, reflect: true}) value;
+    @property({type: Object, reflect: true}) value = {};
     @property({type: Boolean, attribute: 'multi-field'}) multiField = false;
     @property({type: String}) locale = UeqEmotion.DEFAULT_LOCALE;
     @property({type: String}) type = UeqEmotionType.Short;
 
-    _valueContainer;
     _internals;
 
     constructor() {
@@ -84,6 +83,7 @@ export class UeqEmotion extends LitElement {
           }
 
           .face .decals {
+            width: 70%;
             margin-top: 10%;
             padding: 0 15%;
           }
@@ -95,25 +95,18 @@ export class UeqEmotion extends LitElement {
     }
 
     render() {
-        this._addPublicFormElement();
-        const x = UeqContents[this.type].map((row, i) => this._renderRow(row, i));
-        return html`<div class="container">${x}</div>`;
+        return html`<div class="container">${UeqContents[this.type].map((row, i) => this._renderRow(row, i))}</div>`;
     }
 
     firstUpdated(_changedProperties) {
         super.firstUpdated(_changedProperties);
-        UeqContents[this.type].forEach(obj => {
-            if (this.value[obj.name]) {
-                this._activateItem(this.shadowRoot.querySelector(
-                    `input[name="${obj.name}"][value="${this.value[obj.name]}"]`
-                ));
-            }
-        });
+        this._updateOptions();
     }
-
-    get validity() {
-        return this._internals.getValidity();
-    }
+    get form() { return this._internals.form; }
+    get validity() {return this._internals.validity; }
+    get validationMessage() {return this._internals.validationMessage; }
+    get willValidate() {return this._internals.willValidate; }
+    reportValidity() {return this._internals.reportValidity(); }
 
     checkValidity() {
         const allFieldsFilled = this.shadowRoot.querySelectorAll('input[type=radio]:checked').length === 8;
@@ -132,6 +125,11 @@ export class UeqEmotion extends LitElement {
         return i18n[this.locale].translations[key];
     }
 
+    _faceIsSelected(rowIndex, faceIndex) {
+        return this.value.hasOwnProperty(UeqContents[this.type][rowIndex].name) &&
+            faceIndex === this.value[UeqContents[this.type][rowIndex].name];
+    }
+
     _renderFace(rowIndex, faceIndex) {
         const percent = (faceIndex - 1) / 6;
         const hue = Math.floor(percent * 120);
@@ -139,14 +137,20 @@ export class UeqEmotion extends LitElement {
         const mouthRound = 90 + ((percent - .5) * 80);
         const faceColor = `hsl(${hue},100%,50%)`;
         const mouthPath = `M 5 ${mouthSouth} Q 55 ${mouthRound} 105 ${mouthSouth}`;
+        const isSelected = this._faceIsSelected(rowIndex, faceIndex);
         return html`
-        <div class="face" style="background-color: ${faceColor}" @click="${this._faceClickCallback}">
+        <div class="face${isSelected ? ' selected' : ''}" style="background-color: ${faceColor}" @click="${this._faceClickCallback}">
           <svg class="decals" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
             <circle r="10" cx="25" cy="40" fill="black"></circle>
             <circle r="10" cx="85" cy="40" fill="black"></circle>
             <path class="line" d="${mouthPath}" stroke="black" fill="transparent" stroke-width="5"></path>
           </svg>
-          <input type="radio" name="${UeqContents[this.type][rowIndex].name}" value="${faceIndex}" class="select_${faceIndex}" />
+          <input type="radio"
+                 name="${UeqContents[this.type][rowIndex].name}" 
+                 value="${faceIndex}"
+                 class="select_${faceIndex}"
+                 .checked="${isSelected}"
+                 />
         </div>`;
     }
 
@@ -159,24 +163,6 @@ export class UeqEmotion extends LitElement {
         return x;
     }
 
-    _addPublicFormElement() {
-        if (this.multiField) {
-            this._valueContainer = [];
-            UeqContents[this.type].forEach((row, i) => {
-                const elm = document.createElement('input');
-                elm.setAttribute('type', 'hidden');
-                elm.setAttribute('name', `${this.name}[${row.name}]`);
-                this.appendChild(elm);
-                this._valueContainer.push(elm);
-            })
-        } else {
-            this._valueContainer = document.createElement('input');
-            this._valueContainer.setAttribute('type', 'hidden');
-            this._valueContainer.setAttribute('name', this.name);
-            this.appendChild(this._valueContainer);
-        }
-    }
-
     _faceClickCallback($evt) {
         let target = $evt.target;
         if (! target.matches('div.face')) {
@@ -186,42 +172,40 @@ export class UeqEmotion extends LitElement {
         // unselect whole row
         const rowInputs = this.shadowRoot.querySelectorAll(`input[name=${input.getAttribute('name')}]`);
         rowInputs.forEach(input => {
-            input.removeAttribute('checked');
+            input.checked = false;
             input.closest('div.face').classList.remove('selected')
         });
         this._activateItem(input);
     }
 
     _activateItem(input) {
-        input.setAttribute('checked', 'checked');
+        input.checked = true;
         input.dispatchEvent(new Event('change'));
         input.closest('div.face').classList.add('selected');
-        this._changeOption();
+        this._updateOptions();
     }
 
-    _changeOption() {
+    _updateOptions() {
+        this.value = this._collectValues();
         if (this.multiField) {
-            this._changeMulti();
+            this._applyMultiValues();
         } else {
-            this._changeSingle();
+            this._internals.setFormValue(JSON.stringify(this.value));
         }
         this.checkValidity();
     }
 
-    _changeSingle() {
-        this._valueContainer.value = JSON.stringify(
-            [].slice.call(this.shadowRoot.querySelectorAll('input[type=radio]:checked'))
-                .reduce((all, cur) => {
-                    all[cur.getAttribute('name')] = cur.getAttribute('value');
-                    return all;
-                }, {})
-        );
+    _collectValues() {
+        return [].slice.call(this.shadowRoot.querySelectorAll('input[type=radio]:checked'))
+            .reduce((all, cur) => {
+                all[cur.getAttribute('name')] = parseInt(cur.getAttribute('value'));
+                return all;
+            }, {});
     }
 
-    _changeMulti() {
-        [].slice.call(this.shadowRoot.querySelectorAll('input[type=radio]:checked'))
-            .forEach((cur, i) => {
-                this._valueContainer[i].setAttribute('value', cur.getAttribute('value'));
-            });
+    _applyMultiValues() {
+        const data = new FormData();
+        Object.entries(this.value).forEach(([i, cur]) => data.append(`${this.name}[${i}]`, cur));
+        this._internals.setFormValue(data);
     }
 }

@@ -1,12 +1,13 @@
 {
   "name": "accessible-ueq",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "An accessible version of the UEQ(-S) questionnaire for web usage",
   "type": "module",
   "main": "ueq-emotion.webcomponent.js",
-  "module": "ueq-emotion.webcomponent.js",
+  "module": "dist/ueq-emotion.webcomponent.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "web-test-runner \"tests/*.spec.js\" --node-resolve",
+    "test:watch": "web-test-runner \"tests/*.spec.js\" --node-resolve --coverage --watch",
     "build": "rollup -c"
   },
   "repository": {
@@ -39,10 +40,15 @@
     "@babel/plugin-proposal-class-properties": "^7.14.5",
     "@babel/plugin-proposal-decorators": "^7.14.5",
     "@babel/preset-env": "^7.15.0",
+    "@esm-bundle/chai": "^4.3.4-fix.0",
+    "@open-wc/testing": "^2.5.33",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
+    "@web/test-runner": "^0.13.17",
     "core-js": "^3.17.1",
+    "cross-env": "^7.0.3",
+    "element-internals-polyfill": "^0.1.44",
     "regenerator-runtime": "^0.13.9"
   }
 }

@@ -1,5 +1,9 @@
+import * as de_DE from './de_DE.json';
+import * as de_LS from './de_LS.json';
+import * as en_US from './en_US.json';
+
 export default {
-    de_DE: await import('./de_DE.json'),
-    de_LS: await import('./de_LS.json'),
-    en_US: await import('./en_US.json'),
+    de_DE,
+    de_LS,
+    en_US,
 };

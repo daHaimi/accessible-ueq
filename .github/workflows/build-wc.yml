@@ -1,4 +1,4 @@
-name: GitHub Actions Demo
+name: Build WebComponent
 on: [push]
 jobs:
   Explore-GitHub-Actions:
@@ -6,18 +6,17 @@ jobs:
     steps:
       - run: echo "Build WebComponent using rollup..."
       - name: Installing rollup
-        run: |
-          npm install -g rollup
+        run: npm install -g rollup
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: List files in the repository
         run: |
           npm ci
           npm run build
+          npm run test
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
           name: dist
           path: |
             dist
-      - run: echo "🍏 This job's status is ${{ job.status }}."

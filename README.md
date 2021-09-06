@@ -1,10 +1,11 @@
 # Accessible UEQ(S) WebComponent
 
 <p align="center">
-    <a href="https://app.fossa.com/projects/git%2Bgithub.com%2FdaHaimi%2Faccessible-ueq?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FdaHaimi%2Faccessible-ueq.svg?type=shield"/></a>  <a href="https://www.npmjs.com/package/accessible-ueq"><img src="https://img.shields.io/npm/v/accessible-ueq.svg" alt="NPM Version"></a>
-    <a href="https://www.webcomponents.org/element/accessible-ueq"><img src="https://img.shields.io/badge/webcomponents.org-published-blue.svg" alt="Published on webcomponents.org" /></a>
+  <img src="https://github.com/daHaimi/accessible-ueq/actions/workflows/build-wc.yml/badge.svg" alt="Build WebComponent" />
+  <a href="https://app.fossa.com/projects/git%2Bgithub.com%2FdaHaimi%2Faccessible-ueq?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FdaHaimi%2Faccessible-ueq.svg?type=shield"/></a>
+  <a href="https://www.npmjs.com/package/accessible-ueq"><img src="https://img.shields.io/npm/v/accessible-ueq.svg" alt="NPM Version"></a>
+  <a href="https://www.webcomponents.org/element/accessible-ueq"><img src="https://img.shields.io/badge/webcomponents.org-published-blue.svg" alt="Published on webcomponents.org" /></a>
 </p>
-
 
 A more accessible version of the [UEQ-S](https://www.ueq-online.org) through usage with emotional bonding ([Publication](https://doi.org/10.1145/3473856.3473990)).
 This widget uses smileys as an approach to link emotions to the UEQ tiers.
@@ -12,6 +13,9 @@ The development focused on the UEQ-S, so the full UEQ is not yet implemented.
 
 You can use the accessible UEQ-S in any web application as a [WebComponent](https://www.webcomponents.org/).
 All you need to do is import the javascript file and use the custom HTML element.
+
+This WebComponent implements the [ElementInternals](https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/ElementInternals) interface
+to allow for using the element in classic HTML forms. There is of course also a plain javascript API exposed.
 
 # Getting started
 1. Install via npm: `npm i accessible-ueq`
@@ -29,19 +33,22 @@ All you need to do is import the javascript file and use the custom HTML element
 </body>
 ```
 3. The provided values will be submitted as JSON-encoded string in the form
-```
+```json
 {
-  my-ueq[support] = <number>,
-  my-ueq[ease] = <number>,
-  my-ueq[efficiency] = <number>,
-  my-ueq[clarity] = <number>,
-  my-ueq[excitement] = <number>,
-  my-ueq[interest] = <number>,
-  my-ueq[invention] = <number>,
-  my-ueq[novelty] = <number>
+  "support": <number>,
+  "ease": <number>,
+  "efficiency": <number>,
+  "clarity": <number>,
+  "excitement": <number>,
+  "interest": <number>,
+  "invention": <number>,
+  "novelty": <number>
 }
 ```
 with numbers from `1 - 7` depending on the selection.
+
+> If you want to access the values via javascript rather than submitting a html form,
+> the `value` property will return a javascript object rather than a JSON string. 
 
 ## Live Example
 <!--
@@ -64,10 +71,10 @@ There is a set of attributes you can use to personalize your ueq-s
 | Attribute     | Mandatory | Type   | Default | Description |
 | ------------- | --------- | ------ | ------- | ----------- |
 | `name`        | __yes__   | string | -       | Name of the form element. Must conform [`name` attribute specifications for `input` elements](https://www.w3.org/TR/html52/sec-forms.html#naming-form-controls-the-name-attribute). |
-| `locale`      | __no__    | string | en_US   | Locale to be used for translation. Currently available: `en_US`, `de_DE`, `de_LS` (German simple language) |
-| `value`       | __no__    | string | {}      | Set initial value of the element. Must be a JSON-object |
-| `multi-field` | __no__    | bool   | false   | Activates [Multi-Field setting](#multi-field) |
-| `type`        | __no__    | string | 'Short' | Selects if the UEQ-Short should be used or the full UEQ (_not implemented_) |
+| `locale`      | no        | string | en_US   | Locale to be used for translation. Currently available: `en_US`, `de_DE`, `de_LS` (German simple language) |
+| `value`       | no        | string | {}      | Set initial value of the element. Must be a JSON-object |
+| `multi-field` | no        | bool   | false   | Activates [Multi-Field setting](#multi-field) |
+| `type`        | no        | string | 'Short' | Selects if the UEQ-Short should be used or the full UEQ (_not implemented_) |
 
 ## Multi-Field
 The default behaviour converts all questions into a single form-field, which contains all values as JSON-string.
@@ -75,7 +82,7 @@ If you want to get the single values as separate form fields, you can simply use
 ```html
  <ueq-emotion name="my-ueq" multi-field></ueq-emotion>
 ```
-This will provide every line as a single form value in the format:
+This will submit every modality as a single form value in the format:
 ```javascript
 my-ueq[support] = <number>
 my-ueq[ease] = <number>
@@ -86,6 +93,8 @@ my-ueq[interest] = <number>
 my-ueq[invention] = <number>
 my-ueq[novelty] = <number>
 ```
+
+Accessing the value through javascript will however still deliver a JS-object in the default format.
 
 ## Styling
 The accessible UEQ-S is designed to be accessible as far as possible, even from color schemes.
@@ -123,6 +132,9 @@ This can be done by setting the elements' css variables. This is even possible p
 ## [Deprecated] Usage with angular
 Usage as [SurveyJS](https://surveyjs.io) custom element for [Angular](https://angular.io/).
 The general usage of custom elements is displayed on [SurveyJS Angular CLI](https://github.com/surveyjs/surveyjs_angular_cli).
+
+> Originally developed towards usage with Angular only, the WebComponent is now leading the developemnt. 
+> As soon as stable, there will be a new Angular component developed, using the WebComponent internally.
 
 To add the accessible UEQ-S to you survey, just add this project to your `components` folder and edit your `survey.component.ts`:
 ```typescript
