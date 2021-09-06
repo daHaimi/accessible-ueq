@@ -18,6 +18,24 @@ This WebComponent implements the [ElementInternals](https://yari-demos.prod.mdn.
 to allow for using the element in classic HTML forms. There is of course also a plain javascript API exposed.
 
 # Getting started
+## Using a CDN
+You can use the accessible UEQ-S on your website without installing anything using [jsDelivr](https://www.jsdelivr.com):
+
+1. Include and use it in your HTML
+```html
+...
+<head>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/accessible-ueq/dist/ueq-emotion.webcomponent.mjs"></script>
+</head>
+...
+<body>
+...
+    <ueq-emotion name="form-element-name"></ueq-emotion>
+...
+</body>
+```
+ 
+## Using `npm`
 1. Install via npm: `npm i accessible-ueq`
 2. Import and use in your html:
 ```html
@@ -32,7 +50,11 @@ to allow for using the element in classic HTML forms. There is of course also a 
 ...
 </body>
 ```
-3. The provided values will be submitted as JSON-encoded string in the form
+
+## Receiving data
+### Classic HTML
+You can use the element inside any HTML `<form>`-element, like an `<input>`.
+The provided values will be submitted as JSON-encoded string in the form
 ```json
 {
   "support": <number>,
@@ -47,8 +69,16 @@ to allow for using the element in classic HTML forms. There is of course also a 
 ```
 with numbers from `1 - 7` depending on the selection.
 
-> If you want to access the values via javascript rather than submitting a html form,
-> the `value` property will return a javascript object rather than a JSON string. 
+### Access via Javascript
+If you want to access the values via javascript rather than submitting a html form,
+the `value` property will return a javascript object rather than a JSON string.
+```javascript
+function getUeqValues() {
+  const data = document.querySelector('ueq-emotion[name="form-element-name"]').value;
+  // data is provided as Javascript object
+  console.log(data);
+}
+``` 
 
 ## Live Example
 <!--
