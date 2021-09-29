@@ -1,4 +1,4 @@
-export const UeqEmotionType ={
+export const UeqEmotionType = {
   Short: 'Short',
   Full: 'Full'
 };

@@ -85,7 +85,7 @@ function getUeqValues() {
 ```
 <custom-element-demo>
   <template>
-    <link rel="import" href="example.html">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/accessible-ueq/dist/ueq-emotion.webcomponent.mjs"></script>
     <next-code-block></next-code-block>
   </template>
 </custom-element-demo>

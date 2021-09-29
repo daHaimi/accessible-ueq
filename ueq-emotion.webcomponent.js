@@ -193,6 +193,7 @@ export class UeqEmotion extends LitElement {
             this._internals.setFormValue(JSON.stringify(this.value));
         }
         this.checkValidity();
+        this.dispatchEvent(new Event('change'));
     }
 
     _collectValues() {

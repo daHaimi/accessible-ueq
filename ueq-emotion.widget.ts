@@ -1,43 +1,7 @@
-import {UeqContents, UeqEmotionOptions, UeqEmotionType} from './ueq-emotion.contents';
-import value from '*.json';
-
-
-const createFace = (i: number, row: {name: string}) => {
-  const FACE_WIDTH = 70;
-  const mouthW = FACE_WIDTH / 2;
-  const mouthL = FACE_WIDTH / 4;
-  const percent = (i - 1) / 6;
-  const hue = Math.floor(percent * 120);
-  const mouthSouth = 20 + ((.5 - percent) * 10);
-  const faceColor = `hsl(${hue},100%,50%)`;
-  const mouthPath = `M ${mouthL} ${mouthSouth} Q ${mouthW} ${percent * 40} ${mouthL + mouthW} ${mouthSouth}`;
-  const face = $(`<div class="face" style="background-color:${faceColor};">
-    <svg class="mouth" width="60" height="50" xmlns="http://www.w3.org/2000/svg">
-      <path class="line" d="${mouthPath}" stroke="black" fill="transparent" stroke-width="3"></path>
-    </svg>
-    <input type="radio" name="ueq_${row.name}" value="${i}" class="select_${i}" />
-  </div>`);
-  face.on('click', ($evt) => {
-    let target = $($evt.target);
-    if (! target.is('div.face')) {
-      target = target.parents('div.face');
-    }
-    const input = target.find('input');
-    // unselect all
-    const rowInputs = $(`input[name=${input.attr('name')}]`);
-    rowInputs.removeAttr('checked');
-    input.attr('checked', 'checked').trigger('change');
-    // Change face selection class
-    rowInputs.parents('div.face').removeClass('selected');
-    target.addClass('selected');
-  });
-  return face;
-};
-
-export function init(Survey: any, options?: UeqEmotionOptions) {
+export function init(Survey: any, options?: { type: string, language: string }) {
   // Default options: UEQ-S with german leichte Sprache
   options = Object.assign({
-    type: UeqEmotionType.Short,
+    type: 'Short',
     language: 'de_LS'
   }, options);
   const widget = {
@@ -49,8 +13,6 @@ export function init(Survey: any, options?: UeqEmotionOptions) {
     iconName: 'ueq-emotion',
     // The options
     options,
-    // Get the rowContents
-    rowContents: UeqContents[options.type],
     // If the widgets depends on third-party library(s) then here you may check if this library(s) is loaded
     widgetIsLoaded() {
       return true;
@@ -81,50 +43,16 @@ export function init(Survey: any, options?: UeqEmotionOptions) {
     // our our htmlTemplate
     isDefaultRender: false,
     // You should use it if your set the isDefaultRender to false
-    htmlTemplate: '<div><table><tbody class="ueq-body"></tbody></table></div>',
+    htmlTemplate: `<ueq-emotion name="ueq-internal" type="${options.type}" locale="${options.language}"></ueq-emotion>`,
     // The main function, rendering and two-way binding
     afterRender(question, el) {
-      // el is our root element in htmlTemplate, is "div" in our case
-      // get the text element
-      const body = $(el).find('.ueq-body');
-      // @ts-ignore
-      const lang = require(`./i18n/${this.options.language}.json`);
-      for (const row of this.rowContents) {
-        const tr = $('<tr>');
-        const col1 = $('<th>');
-        col1.addClass('item').addClass('item-low').text(lang.translations[row.low]);
-        tr.append(col1);
-        for (let i = 1; i <= 7; i++) {
-          const td = $('<td>');
-          td.append(createFace(i, row));
-          td.find('input').change(() => {
-            const groupValues = $(el).find('input[type=radio]:checked');
-            question.value = groupValues.get().reduce((all, cur) => {
-              all[cur.getAttribute('name')] = $(cur).val();
-              return all;
-            }, {});
-          });
-          tr.append(td);
-        }
-        const colEnd = $('<th>');
-        colEnd.addClass('item').addClass('item-high').text(lang.translations[row.high]);
-        tr.append(colEnd);
-        body.append(tr);
-      }
-
       // set the changed value into question value
-      const onValueChangedCallback = () => {
-        if (typeof question.value === 'object') {
-          Object.values(question.value).forEach((name, val) => {
-            $(el).find(`input[type=radio][name=${name}]`).val(val);
-          });
-        }
-      };
+      const onValueChangedCallback = () => {};
       const onReadOnlyChangedCallback = () => {
         if (question.isReadOnly) {
-          $(body).find('input').attr('disabled', 'disabled');
+          el.setAttribute('disabled', 'disabled');
         } else {
-          $(body).find('input').removeAttr('disabled');
+          el.removeAttribute('disabled');
         }
       };
       // if question becomes readonly/enabled add/remove disabled attribute
@@ -150,12 +78,4 @@ export function init(Survey: any, options?: UeqEmotionOptions) {
 
   // Register our widget in singleton custom widget collection
   Survey.CustomWidgetCollection.Instance.addCustomWidget(widget, 'ueq-emotion');
-
-  // Add custom validator
-  const UeqEmotionValidator = (params) => {
-    const val = Object.keys(params[0]);
-    return UeqContents[params[1]].map(x => `ueq_${x.name}`).reduce((prev, cur) => prev && val.indexOf(cur) !== -1, true);
-  };
-  // Register custom widget validator
-  Survey.FunctionFactory.Instance.register('UeqEmotionAspectsCheckedValidator', UeqEmotionValidator);
 }
