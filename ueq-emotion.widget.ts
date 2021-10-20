@@ -47,6 +47,9 @@ export function init(Survey: any, options?: { type: string, language: string }) 
     // The main function, rendering and two-way binding
     afterRender(question, el) {
       // set the changed value into question value
+      el.addEventListener('click', () => {
+        question.value = el.value;
+      });
       const onValueChangedCallback = () => {};
       const onReadOnlyChangedCallback = () => {
         if (question.isReadOnly) {

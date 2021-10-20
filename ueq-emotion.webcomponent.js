@@ -1,3 +1,4 @@
+import 'element-internals-polyfill/dist';
 import 'regenerator-runtime/runtime';
 import {css, html, LitElement} from 'lit-element';
 import {customElement, property} from 'lit/decorators.js';
@@ -24,7 +25,9 @@ export class UeqEmotion extends LitElement {
             console.error(`could not find locale '${this.locale}'. Valid locales are: `, Object.keys(i18n));
             this.locale = UeqEmotion.DEFAULT_LOCALE;
         }
-        this._internals = this.attachInternals();
+        if (this.attachInternals !== undefined) {
+            this._internals = this.attachInternals();
+        }
         this.checkValidity();
     }
 
