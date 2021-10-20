@@ -1,6 +1,6 @@
 {
   "name": "accessible-ueq",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "An accessible version of the UEQ(-S) questionnaire for web usage",
   "type": "module",
   "main": "ueq-emotion.webcomponent.js",

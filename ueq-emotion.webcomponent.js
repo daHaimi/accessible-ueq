@@ -121,6 +121,22 @@ export class UeqEmotion extends LitElement {
         return allFieldsFilled;
     }
 
+    /**
+     * Safari polyfill
+     * @link https://developer.mozilla.org/en-US/docs/Web/API/Element/toggleAttribute#polyfill
+     */
+    toggleAttribute(name, force) {
+        if(force !== void 0) force = !!force
+        if (this.hasAttribute(name)) {
+            if (force) return true;
+            this.removeAttribute(name);
+            return false;
+        }
+        if (force === false) return false;
+        this.setAttribute(name, "");
+        return true;
+    }
+
     _t(key) {
         if (!i18n[this.locale].translations[key]) {
             return `%${key}%`;
