@@ -7,15 +7,15 @@
   <a href="https://www.webcomponents.org/element/accessible-ueq"><img src="https://img.shields.io/badge/webcomponents.org-published-blue.svg" alt="Published on webcomponents.org" /></a>
 </p>
 
-A more accessible version of the [UEQ-S](https://www.ueq-online.org) through usage with emotional bonding ([Publication](https://doi.org/10.1145/3473856.3473990)).
-This widget uses smileys as an approach to link emotions to the UEQ tiers.
+This repository provides a more accessible version of the [UEQ-S](https://www.ueq-online.org) through usage with emotional bonding ([Publication](https://doi.org/10.1145/3473856.3473990)).
+This widget uses smileys to link emotions to the UEQ tiers.
 The development focused on the UEQ-S, so the full UEQ is not yet implemented.
 
 You can use the accessible UEQ-S in any web application as a [WebComponent](https://www.webcomponents.org/).
-All you need to do is import the javascript file and use the custom HTML element.
+You need to do is import the javascript file and use the custom HTML element.
 
 This WebComponent implements the [ElementInternals](https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/ElementInternals) interface
-to allow for using the element in classic HTML forms. There is of course also a plain javascript API exposed.
+to allow for using the element in classic HTML forms. A plain javascript API is also exposed.
 
 # Getting started
 ## Using a CDN
@@ -70,7 +70,7 @@ The provided values will be submitted as JSON-encoded string in the form
 with numbers from `1 - 7` depending on the selection.
 
 ### Access via Javascript
-If you want to access the values via javascript rather than submitting a html form,
+If you want to access the values via javascript rather than submitting an HTML form,
 the `value` property will return a javascript object rather than a JSON string.
 ```javascript
 function getUeqValues() {
@@ -107,8 +107,8 @@ There is a set of attributes you can use to personalize your ueq-s
 | `type`        | no        | string | 'Short' | Selects if the UEQ-Short should be used or the full UEQ (_not implemented_) |
 
 ## Multi-Field
-The default behaviour converts all questions into a single form-field, which contains all values as JSON-string.
-If you want to get the single values as separate form fields, you can simply use the `multi-field` attribute:
+The default behaviour converts all questions into a single form-field containing all values as JSON-string.
+If you want to get the single values as separate form fields, you can use the `multi-field` attribute:
 ```html
  <ueq-emotion name="my-ueq" multi-field></ueq-emotion>
 ```
