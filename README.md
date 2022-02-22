@@ -7,7 +7,7 @@
   <a href="https://www.webcomponents.org/element/accessible-ueq"><img src="https://img.shields.io/badge/webcomponents.org-published-blue.svg" alt="Published on webcomponents.org" /></a>
 </p>
 
-This repository provides a more accessible version of the [UEQ-S](https://www.ueq-online.org) through usage with emotional bonding ([Publication](https://doi.org/10.1145/3473856.3473990)).
+This repository provides a more accessible version of the [UEQ-S](https://www.ueq-online.org) through usage with emotional bonding ([Publication](https://doi.org/10.1145/3473856.3473990)) [![DOI:10.1145/3473856.3473990](https://zenodo.org/badge/DOI/10.1145/3473856.3473990.svg)](https://doi.org/10.1145/3473856.3473990).
 This widget uses smileys to link emotions to the UEQ tiers.
 The development focused on the UEQ-S, so the full UEQ is not yet implemented.
 
