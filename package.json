@@ -4,7 +4,7 @@
   "description": "An accessible version of the UEQ(-S) questionnaire for web usage",
   "type": "module",
   "main": "ueq-emotion.webcomponent.js",
-  "module": "dist/ueq-emotion.webcomponent.mjs",
+  "module": "../local-tlx/public/lib/ueq-emotion.webcomponent.mjs",
   "scripts": {
     "test": "web-test-runner \"tests/*.spec.js\" --node-resolve",
     "test:watch": "web-test-runner \"tests/*.spec.js\" --node-resolve --coverage --watch",

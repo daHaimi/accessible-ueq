@@ -38,6 +38,7 @@ export class UeqEmotion extends LitElement {
             --border-normal: var(--ueq-border-normal, #000000);
             --border-highlight: var(--ueq-border-highlight, #0000ff);
             --error-highlight: var(--ueq-error-highlight, none);
+            --shade-color: var(--ueq-shade-color, #eeeeee);
             font-family: Roboto, "Helvetica Neue", sans-serif;
           }
 
@@ -46,18 +47,27 @@ export class UeqEmotion extends LitElement {
           }
 
           .container {
+          }
+
+          .row {
             display: grid;
             grid-template-columns: 2fr repeat(7, 1fr) 2fr;
             grid-template-rows: auto;
+            padding: 1em;
+          }
+          .row:nth-child(2n) {
+            background-color: var(--shade-color);
           }
 
           span.item {
-            padding-top: calc(var(--face-size) / 3);
             font-size: calc(var(--face-size) / 2.5);
           }
-
-          .item-low {
-            text-align: right;
+            
+          span.left {
+              text-align: right;
+          }
+          .item-name {
+            text-align: left;
           }
 
           .face {
@@ -98,12 +108,11 @@ export class UeqEmotion extends LitElement {
     }
 
     render() {
-        return html`<div class="container">${UeqContents[this.type].map((row, i) => this._renderRow(row, i))}</div>`;
+        return html`<div class="container">${UeqContents[this.type].map((row) => this._renderRow(row))}</div>`;
     }
 
     firstUpdated(_changedProperties) {
         super.firstUpdated(_changedProperties);
-        this._updateOptions();
     }
     get form() { return this._internals.form; }
     get validity() {return this._internals.validity; }
@@ -112,11 +121,11 @@ export class UeqEmotion extends LitElement {
     reportValidity() {return this._internals.reportValidity(); }
 
     checkValidity() {
-        const allFieldsFilled = this.shadowRoot.querySelectorAll('input[type=radio]:checked').length === 8;
+        const allFieldsFilled = [...this.shadowRoot.querySelectorAll('div.face')].filter(x => [...x.classList].includes('selected')).length === 8;
         if (allFieldsFilled) {
             this._internals.setValidity({});
         } else {
-            this._internals.setValidity({valueMissing: true}, this._t('error fields missing'));
+            this._internals.setValidity({valueMissing: true}, this._t('error.fields missing'));
         }
         return allFieldsFilled;
     }
@@ -138,48 +147,48 @@ export class UeqEmotion extends LitElement {
     }
 
     _t(key) {
-        if (!i18n[this.locale].translations[key]) {
+        try {
+            return key.split('.').reduce((agg, cur) => agg[cur], i18n[this.locale].translations);
+        } catch (e) {
             return `%${key}%`;
         }
         return i18n[this.locale].translations[key];
     }
 
-    _faceIsSelected(rowIndex, faceIndex) {
-        return this.value.hasOwnProperty(UeqContents[this.type][rowIndex].name) &&
-            faceIndex === this.value[UeqContents[this.type][rowIndex].name];
+    _faceIsSelected(rowName, faceIndex) {
+        return this.value.hasOwnProperty(rowName) &&
+            faceIndex === this.value[rowName];
     }
 
-    _renderFace(rowIndex, faceIndex) {
-        const percent = (faceIndex - 1) / 6;
+    _renderFace(rowName, faceIndex, reverse) {
+        const percent = ((reverse ? 7 - faceIndex : faceIndex - 1)) / 6;
         const hue = Math.floor(percent * 120);
         const mouthSouth = 90 + ((.5 - percent) * 10);
         const mouthRound = 90 + ((percent - .5) * 80);
         const faceColor = `hsl(${hue},100%,50%)`;
         const mouthPath = `M 5 ${mouthSouth} Q 55 ${mouthRound} 105 ${mouthSouth}`;
-        const isSelected = this._faceIsSelected(rowIndex, faceIndex);
+        const isSelected = this._faceIsSelected(rowName, faceIndex);
         return html`
-        <div class="face${isSelected ? ' selected' : ''}" style="background-color: ${faceColor}" @click="${this._faceClickCallback}">
+        <div class="face${isSelected ? ' selected' : ''}" style="background-color: ${faceColor}"
+             @click="${this._faceClickCallback}"
+             data-name="${rowName}"
+             data-value="${reverse ? 8-faceIndex : faceIndex}">
           <svg class="decals" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
             <circle r="10" cx="25" cy="40" fill="black"></circle>
             <circle r="10" cx="85" cy="40" fill="black"></circle>
             <path class="line" d="${mouthPath}" stroke="black" fill="transparent" stroke-width="5"></path>
           </svg>
-          <input type="radio"
-                 name="${UeqContents[this.type][rowIndex].name}" 
-                 value="${faceIndex}"
-                 class="select_${faceIndex}"
-                 .checked="${isSelected}"
-                 />
         </div>`;
     }
 
-    _renderRow(rowData, rowIndex) {
-        const x = [html`<span class="item item-low">${this._t(rowData.low)}</span>`];
+    _renderRow(row) {
+        const x = [];
+        x.push(html`<span class="item item-name left">${this._t(row.low)}</span>`);
         for (let i = 1; i <= 7; i++) {
-            x.push(this._renderFace(rowIndex, i));
+            x.push(this._renderFace(row.name, i, row.reverse));
         }
-        x.push(html`<span class="item item-high">${this._t(rowData.high)}</span>`);
-        return x;
+        x.push(html`<span class="item item-name right">${this._t(row.high)}</span>`);
+        return html`<div class="row">${x}</div>`;
     }
 
     _faceClickCallback($evt) {
@@ -187,40 +196,15 @@ export class UeqEmotion extends LitElement {
         if (! target.matches('div.face')) {
             target = target.closest('div.face');
         }
-        const input = target.querySelector('input');
+
         // unselect whole row
-        const rowInputs = this.shadowRoot.querySelectorAll(`input[name=${input.getAttribute('name')}]`);
-        rowInputs.forEach(input => {
-            input.checked = false;
-            input.closest('div.face').classList.remove('selected')
-        });
-        this._activateItem(input);
-    }
-
-    _activateItem(input) {
-        input.checked = true;
-        input.dispatchEvent(new Event('change'));
-        input.closest('div.face').classList.add('selected');
-        this._updateOptions();
-    }
-
-    _updateOptions() {
-        this.value = this._collectValues();
-        if (this.multiField) {
-            this._applyMultiValues();
-        } else {
-            this._internals.setFormValue(JSON.stringify(this.value));
-        }
+        target.parentNode.querySelectorAll('div.face').forEach(x => x.classList.remove('selected'));
+        target.classList.add('selected');
+        this.value[target.dataset.name] = target.dataset.value;
         this.checkValidity();
         this.dispatchEvent(new Event('change'));
-    }
-
-    _collectValues() {
-        return [].slice.call(this.shadowRoot.querySelectorAll('input[type=radio]:checked'))
-            .reduce((all, cur) => {
-                all[cur.getAttribute('name')] = parseInt(cur.getAttribute('value'));
-                return all;
-            }, {});
+        this._applyMultiValues();
+        this.requestUpdate();
     }
 
     _applyMultiValues() {

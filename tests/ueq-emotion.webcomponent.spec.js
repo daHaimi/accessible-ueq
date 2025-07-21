@@ -1,6 +1,6 @@
 import {expect, assert} from '@esm-bundle/chai';
 import {fixture} from '@open-wc/testing';
-import {UeqEmotion} from "../dist/ueq-emotion.webcomponent";
+import {UeqEmotion} from "../../local-tlx/public/lib/ueq-emotion.webcomponent.mjs";
 
 describe('ueq-emotion', () => {
 
