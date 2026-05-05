@@ -14,6 +14,7 @@ export class UeqEmotion extends LitElement {
     @property({type: Object, reflect: true}) value = {};
     @property({type: Boolean, attribute: 'multi-field'}) multiField = false;
     @property({type: String}) locale = UeqEmotion.DEFAULT_LOCALE;
+    @property({type: String, reflect: true}) lang;
     @property({type: String}) type = UeqEmotionType.Short;
 
     _internals;
@@ -110,7 +111,10 @@ export class UeqEmotion extends LitElement {
     render() {
         return html`<div class="container">${UeqContents[this.type].map((row) => this._renderRow(row))}</div>`;
     }
-
+    update(_changedProperties) {
+        this._findLanguage();
+        super.update(_changedProperties);
+    }
     firstUpdated(_changedProperties) {
         super.firstUpdated(_changedProperties);
     }
@@ -128,6 +132,41 @@ export class UeqEmotion extends LitElement {
             this._internals.setValidity({valueMissing: true}, this._t('error.fields missing'));
         }
         return allFieldsFilled;
+    }
+
+    /**
+     * Finds closest element defining a language with universal attribute lang and sets the element's attribute to it.
+     * @see {@link https://www.w3.org/TR/REC-html40/struct/dirlang.html#h-8.1.2}
+     * The languages are split by their definition in RFC 1766.
+     * @see {@link https://www.ietf.org/rfc/rfc1766.txt}
+     * If no region is provided, the language's default is used if present.
+     * If no language is found or no translation for the language exists, english us (default) is used.
+     */
+    _findLanguage() {
+        // Get closest lang
+        let lang = this.lang || UeqEmotion.DEFAULT_LOCALE;
+        let region;
+        // Split language if not unique
+        if (lang.length !== 2) {
+            // Filter out IANA defined primary languages
+            const l = lang.match(/^([ix]|[a-z]{2})[_-](.*)$/i);
+            if (l) {
+                lang = l[1].toLowerCase();
+                region = l[2].toUpperCase();
+            } else {
+                [lang, region] = UeqEmotion.DEFAULT_LOCALE.split('_');
+            }
+        }
+        this.locale = this._resolveLanguage(lang, region);
+    }
+
+    /**
+     * Resolve language & region and select most appropriate translation
+     */
+    _resolveLanguage(lang, region) {
+        if (region && i18n.hasOwnProperty(lang + '_' + region)) return lang + '_' + region;
+        if (i18n.hasOwnProperty(lang)) return lang;
+        return UeqEmotion.DEFAULT_LOCALE;
     }
 
     /**
