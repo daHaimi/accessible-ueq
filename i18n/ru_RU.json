@@ -1,0 +1,23 @@
+{
+  "code": "ru_RU",
+  "description": "Russian - Russia",
+  "translations": {
+    "obstructive": "мешающий",
+    "supportive": "помогающий",
+    "complicated": "сложный",
+    "easy": "простой",
+    "inefficient": "неэффективный",
+    "efficient": "эффективный",
+    "confusing": "запутанный",
+    "clear": "наглядный",
+    "boring": "скучный",
+    "exciting": "захватывающий",
+    "not interesting": "неинтересный",
+    "interesting": "интересный",
+    "conventional": "консервативный",
+    "inventive": "изобретательный",
+    "usual": "обыденный",
+    "leading edge": "передовой",
+    "error fields missing": "Все поля должны быть заполнены."
+  }
+}

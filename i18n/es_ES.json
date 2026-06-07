@@ -1,0 +1,23 @@
+{
+  "code": "es_ES",
+  "description": "Spanish - Spain",
+  "translations": {
+    "obstructive": "obstructivo",
+    "supportive": "impulsor de apoyo",
+    "complicated": "complicado",
+    "easy": "facil",
+    "inefficient": "ineficiente",
+    "efficient": "eficiente",
+    "confusing": "confuso",
+    "clear": "claro",
+    "boring": "aburrido",
+    "exciting": "emocionante",
+    "not interesting": "no interesante",
+    "interesting": "interesante",
+    "conventional": "convencional",
+    "inventive": "original",
+    "usual": "convencional",
+    "leading edge": "novedoso",
+    "error fields missing": "Todos los campos deben completarse."
+  }
+}

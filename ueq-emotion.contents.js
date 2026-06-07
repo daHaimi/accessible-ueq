@@ -3,6 +3,7 @@ export const UeqEmotionType = {
   Full: 'Full'
 };
 
+export const PointsPerItem = 7;
 export const UeqContents = {
   [UeqEmotionType.Short]: [
     {

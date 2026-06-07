@@ -1,0 +1,23 @@
+{
+  "code": "zh_CN",
+  "description": "Chinese - China",
+  "translations": {
+    "obstructive": "碍手碍脚的",
+    "supportive": "能提供辅助的",
+    "complicated": "复杂的",
+    "easy": "简单的",
+    "inefficient": "低效的",
+    "efficient": "高效的",
+    "confusing": "令人眼花缭乱的",
+    "clear": "一目了然的",
+    "boring": "乏味的",
+    "exciting": "带劲的",
+    "not interesting": "无趣的",
+    "interesting": "有趣的",
+    "conventional": "常规的",
+    "inventive": "独创的",
+    "usual": "传统的",
+    "leading edge": "新颖的",
+    "error fields missing": "必须填写所有字段。"
+  }
+}

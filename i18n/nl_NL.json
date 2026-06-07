@@ -1,0 +1,23 @@
+{
+  "code": "nl_NL",
+  "description": "Dutch - Netherlands",
+  "translations": {
+    "obstructive": "belemmerend",
+    "supportive": "ondersteunend",
+    "complicated": "complex",
+    "easy": "eenvoudig",
+    "inefficient": "inefficiënt",
+    "efficient": "efficiënt",
+    "confusing": "verwarrend",
+    "clear": "overzichtelijk",
+    "boring": "vervelend",
+    "exciting": "spannend",
+    "not interesting": "oninteressant",
+    "interesting": "interessant",
+    "conventional": "conventioneel",
+    "inventive": "origineel",
+    "usual": "gebruikelijk",
+    "leading edge": "nieuw",
+    "error fields missing": "Alle velden moeten worden ingevuld."
+  }
+}

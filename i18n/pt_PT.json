@@ -1,0 +1,23 @@
+{
+  "code": "pt_PT",
+  "description": "Portuguese - Portugal",
+  "translations": {
+    "obstructive": "Obstrutivo",
+    "supportive": "Condutor",
+    "complicated": "Complicado",
+    "easy": "Fácil",
+    "inefficient": "Ineficiente",
+    "efficient": "Eficiente",
+    "confusing": "Confuso",
+    "clear": "Evidente",
+    "boring": "Aborrecido",
+    "exciting": "Excitante",
+    "not interesting": "Desinteressante",
+    "interesting": "Interessante",
+    "conventional": "Convencional",
+    "inventive": "Original",
+    "usual": "Comum",
+    "leading edge": "Vanguardista",
+    "error fields missing": "Todos os campos devem ser preenchidos."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "tr_TR",
+  "description": "Turkish - Turkey",
+  "translations": {
+    "obstructive": "engelleyici",
+    "supportive": "destekleyici",
+    "complicated": "karmaşık",
+    "easy": "sade",
+    "inefficient": "verimsiz",
+    "efficient": "verimli",
+    "confusing": "kafa karıştırıcı",
+    "clear": "açık",
+    "boring": "sıkıcı",
+    "exciting": "heyecan verici",
+    "not interesting": "ilginç olmayan",
+    "interesting": "ilginç",
+    "conventional": "geleneksel",
+    "inventive": "özgün",
+    "usual": "alışıldık",
+    "leading edge": "eşi görülmedik",
+    "error fields missing": "Tüm alanlar doldurulmalıdır."
+  }
+}

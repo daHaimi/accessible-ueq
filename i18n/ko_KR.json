@@ -1,0 +1,23 @@
+{
+  "code": "ko_KR",
+  "description": "Korean - South Korea",
+  "translations": {
+    "obstructive": "어려움",
+    "supportive": "쉬움",
+    "complicated": "복잡함",
+    "easy": "간단함",
+    "inefficient": "비효율적",
+    "efficient": "효율적",
+    "confusing": "명백하지 않음",
+    "clear": "명백함",
+    "boring": "지루함",
+    "exciting": "흥미로움",
+    "not interesting": "재미없음",
+    "interesting": "재미있음",
+    "conventional": "상투적",
+    "inventive": "독창적",
+    "usual": "통상적",
+    "leading edge": "모더니즘적",
+    "error fields missing": "모든 항목을 입력해야 합니다."
+  }
+}

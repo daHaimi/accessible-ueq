@@ -1,0 +1,23 @@
+{
+  "code": "pl_PL",
+  "description": "Polish - Poland",
+  "translations": {
+    "obstructive": "przeszkadzający",
+    "supportive": "wspierający",
+    "complicated": "skomplikowany",
+    "easy": "łatwy",
+    "inefficient": "nieefektywny",
+    "efficient": "efektywny",
+    "confusing": "zagmatwany",
+    "clear": "przejrzysty",
+    "boring": "nudny",
+    "exciting": "ekscytujący",
+    "not interesting": "nieinteresujący",
+    "interesting": "interesujący",
+    "conventional": "konwencjonalny",
+    "inventive": "pomysłowy",
+    "usual": "zwykły",
+    "leading edge": "skrajny",
+    "error fields missing": "Wszystkie pola muszą zostać wypełnione."
+  }
+}

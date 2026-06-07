@@ -9,7 +9,7 @@
 
 This repository provides a more accessible version of the [UEQ-S](https://www.ueq-online.org) through usage with emotional bonding ([Publication](https://doi.org/10.1145/3473856.3473990)) [![DOI:10.1145/3473856.3473990](https://zenodo.org/badge/DOI/10.1145/3473856.3473990.svg)](https://doi.org/10.1145/3473856.3473990).
 This widget uses smileys to link emotions to the UEQ tiers.
-The development focused on the UEQ-S, so the full UEQ is not yet implemented.
+The development focused on the UEQ-S, if you are looking for the full UEQ, please visit [https://github.com/daHaimi/ueq-element](https://github.com/daHaimi/ueq-element).
 
 You can use the accessible UEQ-S in any web application as a [WebComponent](https://www.webcomponents.org/).
 You need to do is import the javascript file and use the custom HTML element.
@@ -101,7 +101,7 @@ There is a set of attributes you can use to personalize your ueq-s
 | Attribute     | Mandatory | Type   | Default | Description |
 | ------------- | --------- | ------ | ------- | ----------- |
 | `name`        | __yes__   | string | -       | Name of the form element. Must conform [`name` attribute specifications for `input` elements](https://www.w3.org/TR/html52/sec-forms.html#naming-form-controls-the-name-attribute). |
-| `locale`      | no        | string | en_US   | Locale to be used for translation. Currently available: `en_US`, `de_DE`, `de_LS` (German simple language) |
+| `locale`      | no        | string | en_US   | Locale to be used for translation. |
 | `value`       | no        | string | {}      | Set initial value of the element. Must be a JSON-object |
 | `multi-field` | no        | bool   | false   | Activates [Multi-Field setting](#multi-field) |
 | `type`        | no        | string | 'Short' | Selects if the UEQ-Short should be used or the full UEQ (_not implemented_) |
@@ -156,56 +156,6 @@ This can be done by setting the elements' css variables. This is even possible p
 
 <!-- Using "giant-faces" class style -->
 <ueq-emotion class="giant-faces"></ueq-emotion>
-
-```
-
-## [Deprecated] Usage with angular
-Usage as [SurveyJS](https://surveyjs.io) custom element for [Angular](https://angular.io/).
-The general usage of custom elements is displayed on [SurveyJS Angular CLI](https://github.com/surveyjs/surveyjs_angular_cli).
-
-> Originally developed towards usage with Angular only, the WebComponent is now leading the developemnt. 
-> As soon as stable, there will be a new Angular component developed, using the WebComponent internally.
-
-To add the accessible UEQ-S to you survey, just add this project to your `components` folder and edit your `survey.component.ts`:
-```typescript
-...
-import * as Survey from 'survey-angular';
-import {init as initUeqWidget} from './accessible-ueq/ueq-emotion.widget';
-import {UeqEmotionType} from './accessible-ueq/ueq-emotion.contents';
-...
-initUeqWidget(Survey, {
-  type: UeqEmotionType.Short,
-  lang: 'en_US',
-});
-
-```
-Now you can simply add the widget to your survey's HTML:
-```html
-<survey [json]="json"></survey>
-```
-and Typescript:
-```typescript
-  json = {
-    title: 'My accessible survey',
-    pages: [
-      {
-        questions: [
-          {
-            type: 'ueq-emotion',
-            name: 'my-emotional-ueqs',
-            title: 'Please rate the system you just have been showed',
-            validators: [
-              {
-                type: 'expression',
-                text: 'Please provide a rating for every line',
-                expression: 'UeqEmotionAspectsCheckedValidator({my-emotional-ueqs}, Short)'
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  };
 ```
 
 # License

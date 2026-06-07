@@ -1,0 +1,23 @@
+{
+  "code": "ja_JP",
+  "description": "Japanese - Japan",
+  "translations": {
+    "obstructive": "妨げになる",
+    "supportive": "助けられる",
+    "complicated": "複雑",
+    "easy": "簡単",
+    "inefficient": "効率が悪い",
+    "efficient": "効率が良い",
+    "confusing": "ごちゃごちゃしている",
+    "clear": "すっきりしている",
+    "boring": "退屈だ",
+    "exciting": "エキサイティングだ",
+    "not interesting": "おもしろくない",
+    "interesting": "おもしろい",
+    "conventional": "従来どおり",
+    "inventive": "独特だ",
+    "usual": "普通",
+    "leading edge": "斬新的",
+    "error fields missing": "すべての項目を入力してください。"
+  }
+}

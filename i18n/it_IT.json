@@ -1,0 +1,23 @@
+{
+  "code": "it_IT",
+  "description": "Italian - Italy",
+  "translations": {
+    "obstructive": "ostruttiva",
+    "supportive": "di supporto",
+    "complicated": "complicato",
+    "easy": "facile",
+    "inefficient": "inefficiente",
+    "efficient": "efficiente",
+    "confusing": "confuso",
+    "clear": "chiaro",
+    "boring": "noioso",
+    "exciting": "appassionante",
+    "not interesting": "non interessante",
+    "interesting": "interessante",
+    "conventional": "convenzionale",
+    "inventive": "originale",
+    "usual": "usuale",
+    "leading edge": "moderno",
+    "error fields missing": "Tutti i campi devono essere compilati."
+  }
+}

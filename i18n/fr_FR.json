@@ -1,0 +1,23 @@
+{
+  "code": "fr_FR",
+  "description": "French - France",
+  "translations": {
+    "obstructive": "Rigide",
+    "supportive": "Facilitant",
+    "complicated": "Compliqué",
+    "easy": "Simple",
+    "inefficient": "Inefficace",
+    "efficient": "Efficace",
+    "confusing": "Déroutant",
+    "clear": "Clair",
+    "boring": "Ennuyeux",
+    "exciting": "Captivant",
+    "not interesting": "Inintéressant",
+    "interesting": "Intéressant",
+    "conventional": "Conventionnel",
+    "inventive": "Original",
+    "usual": "Habituel",
+    "leading edge": "Avant-gardiste",
+    "error fields missing": "Tous les champs doivent être remplis."
+  }
+}

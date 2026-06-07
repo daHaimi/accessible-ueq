@@ -2,7 +2,7 @@ import 'element-internals-polyfill/dist';
 import 'regenerator-runtime/runtime';
 import {css, html, LitElement} from 'lit-element';
 import {customElement, property} from 'lit/decorators.js';
-import {UeqContents, UeqEmotionType} from './ueq-emotion.contents';
+import {UeqContents, UeqEmotionType, PointsPerItem} from './ueq-emotion.contents';
 import i18n from './i18n/i18n';
 
 @customElement('ueq-emotion')
@@ -200,7 +200,7 @@ export class UeqEmotion extends LitElement {
     }
 
     _renderFace(rowName, faceIndex, reverse) {
-        const percent = ((reverse ? 7 - faceIndex : faceIndex - 1)) / 6;
+        const percent = ((reverse ? PointsPerItem - faceIndex : faceIndex - 1)) / (PointsPerItem - 1);
         const hue = Math.floor(percent * 120);
         const mouthSouth = 90 + ((.5 - percent) * 10);
         const mouthRound = 90 + ((percent - .5) * 80);
@@ -211,7 +211,7 @@ export class UeqEmotion extends LitElement {
         <div class="face${isSelected ? ' selected' : ''}" style="background-color: ${faceColor}"
              @click="${this._faceClickCallback}"
              data-name="${rowName}"
-             data-value="${reverse ? 8-faceIndex : faceIndex}">
+             data-value="${reverse ? (PointsPerItem - faceIndex) + 1 : faceIndex}">
           <svg class="decals" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
             <circle r="10" cx="25" cy="40" fill="black"></circle>
             <circle r="10" cx="85" cy="40" fill="black"></circle>
@@ -223,7 +223,7 @@ export class UeqEmotion extends LitElement {
     _renderRow(row) {
         const x = [];
         x.push(html`<span class="item item-name left">${this._t(row.low)}</span>`);
-        for (let i = 1; i <= 7; i++) {
+        for (let i = 1; i <= PointsPerItem; i++) {
             x.push(this._renderFace(row.name, i, row.reverse));
         }
         x.push(html`<span class="item item-name right">${this._t(row.high)}</span>`);

@@ -1,0 +1,23 @@
+{
+  "code": "sv_SE",
+  "description": "Swedish - Sweden",
+  "translations": {
+    "obstructive": "Hindrande",
+    "supportive": "Stödjande",
+    "complicated": "Komplicerad",
+    "easy": "Enkel",
+    "inefficient": "Ineffektiv",
+    "efficient": "Effektiv",
+    "confusing": "Förvirrande",
+    "clear": "Tydlig",
+    "boring": "Tråkig",
+    "exciting": "Spännande",
+    "not interesting": "Ointressant",
+    "interesting": "Intressant",
+    "conventional": "Fantasilös",
+    "inventive": "Uppfinningsrik",
+    "usual": "Bakåtsträvande",
+    "leading edge": "I framkant",
+    "error fields missing": "Alla fält måste fyllas i."
+  }
+}
