@@ -19,6 +19,7 @@ jobs:
       - name: Prepare environment & build
         run: |
           npm ci
+          npm pkg fix
           npm run build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

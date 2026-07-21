@@ -19,6 +19,7 @@ jobs:
       - name: List files in the repository
         run: |
           npm ci
+          npm pkg fix
           npm run build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
