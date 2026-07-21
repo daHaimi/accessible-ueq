@@ -4,18 +4,26 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Build WebComponent using rollup..."
       - name: Installing rollup
         run: npm install -g rollup
+
       - name: Check out repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
+
+      - name: Use Node.js 14
+        uses: actions/setup-node@v7
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+
       - name: List files in the repository
         run: |
           npm ci
           npm run build
           npm run test
+
       - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v7
         with:
           name: dist
           path: |
