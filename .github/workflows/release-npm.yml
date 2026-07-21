@@ -30,6 +30,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - run: npm publish
+      - name: Publish to npm
+        uses: JS-DevTools/npm-publish@v4
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
