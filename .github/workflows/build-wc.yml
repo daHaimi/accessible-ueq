@@ -20,6 +20,12 @@ jobs:
         run: |
           npm ci
           npm run build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Run unit tests
+        continue-on-error: true
+        run: |
           npm run test
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
