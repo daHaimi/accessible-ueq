@@ -30,8 +30,3 @@ jobs:
           npm run test
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish to npm
-        uses: JS-DevTools/npm-publish@v4
-        with:
-          registry: "https://npm.pkg.github.com"
